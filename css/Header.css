@@ -11,10 +11,11 @@
 /* define color using css variables */
 :root{
     --nav-text-color: rgba(85, 85, 85, 0.8); 
+    --underline-color:rgb(50, 50, 50);
 }
 
 .header-container{
-    border: 5px solid red;
+    /* border: 5px solid red; */
     display: grid;
     grid-template-columns: 1fr 3fr 1fr; 
     align-items: center;
@@ -49,14 +50,22 @@
     gap: 35px;
 }
 
-.home{
+.home a{
     border-bottom: 1px solid;
-    color: var(--nav-text-color);
     
 }
 
+.nav-item.home a {
+    font-weight: 300;
+}
+
+
+
+
 .home:hover{
     border-bottom: 2px solid;
+    color: var(--underline-color);
+    transition: all 0.2s ease-in;
 }
 
 .nav-item a{
@@ -65,9 +74,17 @@
     font-size: 1.2rem;
     font-weight: 200;
     color: var(--nav-text-color);
+    transition: all 0.2s ease-in;
 
  
 }
+
+.nav-list .nav-item:not(.home) a:hover {
+    border-bottom: 1px solid;
+    color: var(--underline-color);
+    
+}
+
 
 .icons{
      /* border: 3px solid brown; */
