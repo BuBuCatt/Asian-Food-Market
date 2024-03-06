@@ -14,7 +14,67 @@
     {
         "img": "./assets/img/scallops.jpg",
         "product_name": "Fresh Hokkaido Scallops",
-        "price_from": 59.99,
+        "price":  69.99,
+        "currency": "CAD"
+    },
+    {
+        "img": "./assets/img/sashimi-hamachi.webp",
+        "product_name": "Fresh Hamachi",
+        "price": 71.99,
+        "currency": "CAD"
+    },
+    {
+        "img": "./assets/img/sashimi-aji-loin.webp",
+        "product_name": "Fresh Shima Aji Loin",
+        "price": 59.99,
+        "currency": "CAD"
+    },
+    {
+        "img": "./assets/img/scallops.jpg",
+        "product_name": "Fresh Hokkaido Scallops",
+        "price":  69.99,
+        "currency": "CAD"
+    },
+    {
+        "img": "./assets/img/sashimi-hamachi.webp",
+        "product_name": "Fresh Hamachi",
+        "price": 71.99,
+        "currency": "CAD"
+    },
+    {
+        "img": "./assets/img/sashimi-aji-loin.webp",
+        "product_name": "Fresh Shima Aji Loin",
+        "price": 59.99,
+        "currency": "CAD"
+    },
+    {
+        "img": "./assets/img/scallops.jpg",
+        "product_name": "Fresh Hokkaido Scallops",
+        "price":  69.99,
+        "currency": "CAD"
+    },
+    {
+        "img": "./assets/img/sashimi-hamachi.webp",
+        "product_name": "Fresh Hamachi",
+        "price": 71.99,
+        "currency": "CAD"
+    },
+    {
+        "img": "./assets/img/sashimi-aji-loin.webp",
+        "product_name": "Fresh Shima Aji Loin",
+        "price": 59.99,
+        "currency": "CAD"
+    },
+    {
+        "img": "./assets/img/scallops.jpg",
+        "product_name": "Fresh Hokkaido Scallops",
+        "price":  69.99,
+        "currency": "CAD"
+    },
+    {
+        "img": "./assets/img/scallops.jpg",
+        "product_name": "Fresh Hokkaido Scallops",
+        "price":  69.99,
         "currency": "CAD"
     }
 ]

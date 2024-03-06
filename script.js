@@ -51,17 +51,23 @@ http.onload = function(){
             output += `
              <div class = "product">
                 <img src = "${item.img}" alt="${item.product_name}">
-                <h3>${item.product_name}</h3>
-                <p>Price: ${item.price}</p>
+                <p class ="title">${item.product_name}</p>
+                <p class ="price">
+                    
+                    <span>$${item.price}</span>
+                    <span>${item.currency}</span>
+                </p>
+
+                <p class="cart">Add to cart <i class="ri-shopping-cart-line"></i></p>
 
              </div>
 
             
-            `
+            `;
         }
 
 
-        document.querySelector('.products').innerHTML = output;
+        document.querySelector('.products-container').innerHTML = output;
 
 
     }

@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* define color using css variables */
+:root{
+    --nav-text-color: rgba(85, 85, 85, 0.8); 
+    --underline-color:rgb(50, 50, 50);
+    --product-text-color:rgba(43, 43, 43, 0.8);
+    --button-border-color:rgba(102, 102, 102, 0.4); 
+}
+
+
+body{
+    font-family: "Poppins",sans-serif;
+    min-height: 100vh;
+}
+
+/* products css using grid */
+
+.products-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px,auto));
+    grid-gap: 50px;
+    margin: 50px auto;
+    max-width: 1240px;
+    padding: 20px;
+
+}
+
+/* This section write in script.js */
+
+.product{
+    padding: 10px;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.3);
+    color: var(--product-text-color);
+}
+
+.product img{
+    width: 100%;
+    display: block;
+    border-radius: 18px;
+}
+
+.product .title{
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+   
+
+}
+
+.product .price{
+    text-align: center;
+    font-weight: 600;
+    font-size: 15px;
+    padding-top: 10px;
+}
+
+.product .cart{
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 30px;
+    border: 2px solid var(--button-border-color);
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--product-text-color);
+    border-radius: 10px;
+}
+
+
+.product .cart:hover {
+    background-color: rgba(102, 102, 102, 0.2); 
+    border-color: rgba(102, 102, 102, 0.6); 
+    color: rgba(0, 0, 0, 0.8); 
+    font-size: 18px;
+}
+
+
+.product .cart i{
+    padding-left: 10px;
+}
+
