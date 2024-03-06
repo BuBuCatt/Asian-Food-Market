@@ -38,6 +38,7 @@ body{
     padding: 10px;
     box-shadow: 0 5px 5px rgba(0,0,0,0.3);
     color: var(--product-text-color);
+   
 }
 
 .product img{
@@ -45,6 +46,13 @@ body{
     display: block;
     border-radius: 18px;
 }
+
+.product img:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+
 
 .product .title{
     text-align: center;

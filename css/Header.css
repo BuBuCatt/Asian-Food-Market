@@ -86,6 +86,25 @@
 }
 
 
+
+/* @media */
+
+@media(max-width : 768px){
+
+    nav .nav-list{
+        position: absolute;
+        top: 60px;
+        background-color: white;
+        left: 0;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        height: 100vh;
+
+    }
+}
+
+
 .icons{
      /* border: 3px solid brown; */
      gap: 10px;
