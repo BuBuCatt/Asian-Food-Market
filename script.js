@@ -9,7 +9,7 @@ let http = new XMLHttpRequest();
 
 
 //Second, prepare the request with the open() method
-http.open('get', 'products.json', true);
+http.open('GET', 'products.json', true);
 
 // the first argument sets the http method
 // in the second argument we pass the file where our data lives
@@ -34,9 +34,9 @@ http.send();
 
 */
 
-http.onload() = function(){
+http.onload = function(){
     // inside this function need to check the reeady state and status properties.
-    if(this.readyStatus == 4 && this.status == 200){
+    if(this.readyState == 4 && this.status == 200){
 
         //if we have a successful response, i have to parse the json data
         //and convert them to js array
@@ -50,18 +50,18 @@ http.onload() = function(){
         for(let item of products){
             output += `
              <div class = "product">
-                <img src = "">
+                <img src = "${item.img}" alt="${item.product_name}">
+                <h3>${item.product_name}</h3>
+                <p>Price: ${item.price}</p>
 
              </div>
-            
-            
-            
+
             
             `
         }
 
 
-
+        document.querySelector('.products').innerHTML = output;
 
 
     }
