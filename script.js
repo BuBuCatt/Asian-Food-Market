@@ -74,3 +74,35 @@ http.onload = function(){
 
 }
 
+
+
+// Humburger Menu
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('nav-toggle');
+    const menu = document.querySelector('.nav-list');
+    const breakpoint = 768; // Set this to your mobile breakpoint
+
+    function adjustMenuVisibility() {
+        if (window.innerWidth > breakpoint) {
+            menu.style.display = ''; // Reset display style
+        } else {
+            if (menuToggle.checked) {
+                menu.style.display = 'block';
+            } else {
+                menu.style.display = 'none';
+            }
+        }
+    }
+
+    menuToggle.addEventListener('change', adjustMenuVisibility);
+
+    // Add resize event listener to adjust menu visibility on window resize
+    window.addEventListener('resize', adjustMenuVisibility);
+
+    // Initial adjustment in case the window is resized before any interaction.
+    adjustMenuVisibility();
+});
+
+

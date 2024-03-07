@@ -26,14 +26,16 @@
 
 }
 
+
+
 .logo img{
     width: 100%;
 }
 
 .logo, .navigation, .icons {
     display: flex;
-    justify-content: center;/* This centers the child items horizontally */
-    align-items: center;/* This centers the child items vertically */
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -68,6 +70,10 @@
     transition: all 0.2s ease-in;
 }
 
+nav .nav-list {
+    display: flex;
+}
+
 .nav-item a{
     /* border: 3px solid brown; */
     text-decoration: none;
@@ -85,14 +91,17 @@
     
 }
 
-input{
-    display: none;
-}
+
+
 
 .icons{
     width: 100%;
 }
 
+
+.menu, label{
+    display: none; 
+}
 
 
 /* @media */
@@ -101,8 +110,9 @@ input{
 
     .header-container {
         display: flex;
-        align-items: center;
-        justify-content: center;
+        /* align-items: center;
+        justify-content: center; */
+        justify-content: space-between;
         
     }
     .logo a{
@@ -122,10 +132,10 @@ input{
 
 
     nav .nav-list{
-        /* display: none;  */
+        display: none ;
         position: absolute;
         top: 100px;
-        background-color: transparent;
+        background-color:white;
         left: 0;
         flex-direction: column;
         width: 100%;
@@ -133,23 +143,27 @@ input{
         height: 100vh;
 
     }
+    input{
+        display: none;
+    }
+
+    .nav-toggle-label {
+        display: block; 
+        cursor: pointer;
+    }
+
+
 
     .icons {
         width: 150%;
         height: 100%;
     }
 
-
-
     .nav-list .nav-item a:nth-child(1){
         margin-top: 50px;
     }
 
-    label{
-        border: solid;
-        width: 45px;
-        height: 30px;
-    }
+
 }
 
 
