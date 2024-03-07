@@ -134,14 +134,25 @@ nav .nav-list {
     nav .nav-list{
         display: none ;
         position: absolute;
-        top: 100px;
+        top: 90px;
         background-color:white;
         left: 0;
         flex-direction: column;
         width: 100%;
         align-items: center;
-        height: 100vh;
+        height: 25vh;
 
+    }
+    
+    nav .nav-list li {
+        position: relative;
+        left: 5%;
+        margin-top: 10px;
+        
+    }
+
+    .nav-list .home:hover{
+        border-bottom: none;
     }
     input{
         display: none;
