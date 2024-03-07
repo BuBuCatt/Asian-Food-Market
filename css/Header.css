@@ -85,22 +85,70 @@
     
 }
 
+input{
+    display: none;
+}
+
+.icons{
+    width: 100%;
+}
+
 
 
 /* @media */
 
 @media(max-width : 768px){
 
+    .header-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+    }
+    .logo a{
+        width: 50%;
+        display: flex;
+        justify-content:end;
+        align-items: center;
+        position: relative;
+        left: 34%;
+      
+       
+    }
+    .logo img{
+        width: 100%;
+    }
+
+
+
     nav .nav-list{
+        /* display: none;  */
         position: absolute;
-        top: 60px;
-        background-color: white;
+        top: 100px;
+        background-color: transparent;
         left: 0;
         flex-direction: column;
         width: 100%;
         align-items: center;
         height: 100vh;
 
+    }
+
+    .icons {
+        width: 150%;
+        height: 100%;
+    }
+
+
+
+    .nav-list .nav-item a:nth-child(1){
+        margin-top: 50px;
+    }
+
+    label{
+        border: solid;
+        width: 45px;
+        height: 30px;
     }
 }
 
