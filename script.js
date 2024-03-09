@@ -2,22 +2,26 @@
     using ajax request to fetch the data from json file.
  */
 
+// Global products array
+let products = [];
+
+//map obj
+
+const productObj = new Map();
+
 //First, create a new XMLhttp-request object.
 
 let http = new XMLHttpRequest();
 // the variable http holds now all methods and properties of object.
 
 
-//Second, prepare the request with the open() method
-http.open('GET', 'products.json', true);
+
 
 // the first argument sets the http method
 // in the second argument we pass the file where our data lives
 // and the last keyword true , sets the request to be async.
 
-//Next, send the request 
 
-http.send();
 
 // after send the request I need to catch the response
 //check the onload eventlistner 
@@ -42,37 +46,81 @@ http.onload = function(){
         //and convert them to js array
 
         let products = JSON.parse(this.responseText);
-
-        //empty veriable to add incoming data
-        let output = "";
-
-        // loop through the products, and in every iteration, and add html template to the output variable
-        for(let item of products){
-            output += `
-             <div class = "product">
-                <img src = "${item.img}" alt="${item.product_name}">
-                <p class ="title">${item.product_name}</p>
-                <p class ="price">
-                    
-                    <span>$${item.price}</span>
-                    <span>${item.currency}</span>
-                </p>
-
-                <p class="cart">Add to cart <i class="ri-shopping-cart-line"></i></p>
-
-             </div>
-
-            
-            `;
+        for(let data of products){
+            productObj.set(data.pid , data);
         }
-
-
-        document.querySelector('.products-container').innerHTML = output;
-
+        console.log(products);
+        
+        displayProducts(productObj); 
 
     }
 
 }
+
+//Second, prepare the request with the open() method
+http.open('GET', 'products.json', true);
+//Next, send the request 
+
+http.send();
+
+
+//display products function
+
+function displayProducts(productsToDisplay , searchQuery ="") {
+
+    document.querySelector('.products-container').innerHTML = "";
+    console.log("This is display:" , searchQuery);
+
+    let productsArray = Array.from(productsToDisplay.values()); // mapobj to array
+
+    let output = "";
+
+    for(let item of productsArray) {
+
+        const matchSearchQuery = item.product_name.toLowerCase().includes(searchQuery);
+
+        console.log(matchSearchQuery);
+
+        if(matchSearchQuery){ //true
+
+            output += `
+            <div class="product">
+                <img src="${item.img}" alt="${item.product_name}">
+                <p class="title">${item.product_name}</p>
+                <p class="price">
+                    <span>$${item.price}</span>
+                    <span>${item.currency}</span>
+                </p>
+                <p class="cart">Add to cart <i class="ri-shopping-cart-line"></i></p>
+            </div>
+        `;
+
+        }
+
+
+
+    }
+    document.querySelector('.products-container').innerHTML = output;
+}
+
+// search Bar
+const searchBar = document.getElementById('searchBar');
+searchBar.addEventListener('input', handleSearch);
+
+
+// Function to handle the search and display suggestions
+function handleSearch(event) {
+    const searchTerm = event.target.value.toLowerCase();
+
+    // Debugging: log the search term to console
+    console.log('Searching for:', searchTerm);
+
+    // Call this function to display the filtered products
+    displayProducts(productObj ,searchTerm);
+}
+
+
+
 
 
 
