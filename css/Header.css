@@ -53,6 +53,7 @@
 }
 
 
+
 /* NAV */
 .nav-list{
     /* border: 10px solid yellow; */
@@ -121,6 +122,10 @@ nav .nav-list {
  
  .icons img{
     width: 90%;
+ }
+
+ .icons a:hover{
+    transform: scale(1.1);
  }
  
 

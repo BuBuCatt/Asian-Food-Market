@@ -2,50 +2,64 @@
     {
         "pid": "p01" ,
         "img": "./assets/img/sashimi-hamachi.webp",
-        "product_name": "Fresh Hamachi",
-        "price": 71.99,
+        "product_name": "Hamachi Sashimi",
+        "price": 41.99,
         "currency": "CAD"
     },
     {
         "pid": "p02" ,
         "img": "./assets/img/sashimi-aji-loin.webp",
-        "product_name": "Fresh Shima Aji Loin",
+        "product_name": " Shima Aji Loin Sashimi",
         "price": 59.99,
         "currency": "CAD"
     },
     {
         "pid": "p03" ,
         "img": "./assets/img/scallops.jpg",
-        "product_name": "Fresh Hokkaido Scallops",
-        "price":  69.99,
+        "product_name": "Hokkaido Scallops",
+        "price":  39.99,
         "currency": "CAD"
     },
     {
         "pid": "p04" ,
-        "img": "./assets/img/sashimi-hamachi.webp",
-        "product_name": "Fresh Hamachi",
-        "price": 71.99,
+        "img": "./assets/img/peach.png",
+        "product_name": "Fukushima Peach",
+        "price": 20.99,
         "currency": "CAD"
     },
     {
         "pid": "p05" ,
-        "img": "./assets/img/sashimi-aji-loin.webp",
-        "product_name": "Fresh Shima Aji Loin",
-        "price": 59.99,
+        "img": "./assets/img/salmon-sashimi.png",
+        "product_name": "Salmon Sashimi",
+        "price": 39.99,
         "currency": "CAD"
     },
     {
         "pid": "p06" ,
-        "img": "./assets/img/scallops.jpg",
-        "product_name": "Fresh Hokkaido Scallops",
-        "price":  69.99,
+        "img": "./assets/img/grapes.png",
+        "product_name": "nagano grapes",
+        "price":  19.99,
         "currency": "CAD"
     },
     {
         "pid": "p07" ,
-        "img": "./assets/img/sashimi-hamachi.webp",
-        "product_name": "Fresh Hamachi",
-        "price": 71.99,
+        "img": "./assets/img/taiyaki.png",
+        "product_name": "taiyaki",
+        "price": 5.99,
+        "currency": "CAD"
+    },
+    {
+        "pid": "p08" ,
+        "img": "./assets/img/uni.png",
+        "product_name": "Hokkaido Bafun Uni",
+        "price": 120.99,
+        "currency": "CAD"
+    },
+    {
+        "pid": "p09" ,
+        "img": "./assets/img/grapes-kyoho.png",
+        "product_name": "Kyoho Grapes",
+        "price": 19.99,
         "currency": "CAD"
     }
 ]
