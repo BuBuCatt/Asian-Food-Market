@@ -106,3 +106,25 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+
+
+
+// Using jQuery for toggling the search bar
+
+$(document).ready(function(){
+    $('#toggle-search').click(function(event){
+        // Prevent the default action of the anchor tag
+        event.preventDefault();
+        
+        // Toggle the display of the search bar
+        $('#searchBar').toggle('normal', function(){
+            // Focus on the search input if it's visible after toggling
+            if ($(this).is(':visible')) {
+                $(this).focus();
+            }
+        });
+
+
+    });
+});
+
