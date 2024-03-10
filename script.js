@@ -50,6 +50,8 @@ http.onload = function(){
             productObj.set(data.pid , data);
         }
         console.log(products);
+
+        prepareSuggestions();
         
         displayProducts(productObj); 
 
@@ -57,11 +59,23 @@ http.onload = function(){
 
 }
 
+let suggestions = [];
+// Now that productObj has been populated, generate the suggestions array
+function prepareSuggestions() {
+    suggestions = Array.from(productObj.values()).map(product => product.product_name);
+    console.log("Suggestion Details:", suggestions);// now store in array 
+    // Proceed to use suggestions for autofill
+}
+
 //Second, prepare the request with the open() method
 http.open('GET', 'products.json', true);
 //Next, send the request 
 
 http.send();
+
+// search Bar
+const searchBar = document.getElementById('searchBar');
+searchBar.addEventListener('input', handleSearch);
 
 
 //display products function
@@ -103,9 +117,6 @@ function displayProducts(productsToDisplay , searchQuery ="") {
     document.querySelector('.products-container').innerHTML = output;
 }
 
-// search Bar
-const searchBar = document.getElementById('searchBar');
-searchBar.addEventListener('input', handleSearch);
 
 
 // Function to handle the search and display suggestions
@@ -115,12 +126,71 @@ function handleSearch(event) {
     // Debugging: log the search term to console
     console.log('Searching for:', searchTerm);
 
+    if(searchTerm == ""){
+        displaySuggestions([]);
+        return;
+    }
+
+
+    let filteredSuggestions = suggestions.filter(suggestion => 
+            suggestion.toLowerCase().includes(searchTerm)
+        );
+
+    
+    displaySuggestions(filteredSuggestions);
+
+
     // Call this function to display the filtered products
     displayProducts(productObj ,searchTerm);
+
+    
+  
+}
+
+// function to display suggestion
+
+function displaySuggestions(filteredSuggestions) {
+    const suggestionsContainer = document.querySelector('.resultBox');
+    suggestionsContainer.innerHTML = ''; // Clear previous suggestions
+
+    if (filteredSuggestions.length > 0) {
+        const suggestionsHtml = filteredSuggestions.map(suggestion =>
+            `<li onclick="selectSuggestion('${suggestion}')">${suggestion}</li>`
+        ).join('');
+
+        suggestionsContainer.innerHTML = `<ul>${suggestionsHtml}</ul>`;
+        suggestionsContainer.style.display = 'block';
+
+    } else {
+        suggestionsContainer.style.display = 'none';
+    }
 }
 
 
+function selectSuggestion(suggestion) {
+    const searchBar = document.getElementById('searchBar');
+    searchBar.value = suggestion;
+    
+    document.getElementById('searchBar').value = "";
 
+
+    const suggestionsContainer = document.querySelector('.resultBox ');
+    suggestionsContainer.style.display = 'none';
+
+    handleSearch({ target: { value: suggestion } }); 
+}
+
+document.addEventListener('click', function(event) {
+    // Get the search bar and the suggestion bar elements
+    const searchBar = document.getElementById('searchBar');
+    const suggestionBar = document.querySelector('.resultBox');
+
+    // Check if the clicked element is not the search bar and not inside the suggestion bar
+    if (!searchBar.contains(event.target) && !suggestionBar.contains(event.target)) {
+        // Hide the suggestion bar
+        suggestionBar.style.display = 'none';
+    }
+});
 
 
 
@@ -175,4 +245,6 @@ $(document).ready(function(){
 
     });
 });
+
+
 
