@@ -25,10 +25,12 @@ body{
 .products-container{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px,250px));
-    grid-gap: 50px;
+    grid-gap: 55px;
     margin: 50px auto;
     max-width: 1240px;
     padding: 20px;
+    align-items: center;
+    justify-content: center;
 
 }
 
