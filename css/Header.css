@@ -132,7 +132,10 @@ nav .nav-list {
  }
  
 
-
+.btn-cart{
+    background-color: white;
+    border: none;
+}
 #searchBar {
     display: none;
     background-color: var(--nav-text-color);
