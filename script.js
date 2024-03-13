@@ -2,6 +2,9 @@
     using ajax request to fetch the data from json file.
  */
 
+//import class
+import { Product , CartItem} from "./JS/productClass.js";
+
 // Global products array
 let products = [];
 
@@ -58,6 +61,12 @@ http.onload = function(){
         
         displayProducts(productObj); 
 
+        
+ 
+
+
+
+
     }
 
 }
@@ -109,7 +118,7 @@ function displayProducts(productsToDisplay , searchQuery ="") {
                     <span>${item.currency}</span>
                 </p>
                
-                <p onclick="addToCart('${item.pid}')" class="cart">Add to Cart <i class="ri-shopping-cart-line"></i></p>
+                <p onclick="addToCart('${item.pid}')" data-pid="${item.pid}" class="cart add-to-cart">Add to Cart <i class="ri-shopping-cart-line"></i></p>
             </div>
         `;
 
@@ -147,6 +156,7 @@ function handleSearch(event) {
     // Call this function to display the filtered products
     displayProducts(productObj ,searchTerm);
 
+   
     
   
 }
@@ -253,5 +263,121 @@ $(document).ready(function(){
 
 /* Shopping Cart*/
 
+// Add Cart functionlity 
+// check the item is already exist or not, if yes updated the quantity 
+// if not add a new item to the cart
+
+function addToCart(pid, quantity = 1){
+        // Check if the product exists in the product catalog
+        if (!productObj.has(pid)) {
+            console.error("Product not found with PID:", pid);
+            return; // Stop execution if the product does not exist
+        }
+
+        const product = productObj.get(pid);
+        let cartItem = cartObj.get(pid);
+
+         // If the product is already in the cart, update the quantity
+        if (cartItem) {
+            cartItem.quantity++;
+            console.log("Item already in cart, updating count:", cartItem);
+        } else {
+            // If the product is not in the cart, add it with the given quantity
+            cartItem = new CartItem(product, quantity);
+            console.log("New item, adding to cart:", cartItem);
+        }
+
+        
+
+        // Update the cart with the new or updated item
+        cartObj.set(pid, cartItem);
+        displayCartItems(); // Assuming this function properly displays cart items
 
 
+}
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Attach the event listener to a parent container
+    document.querySelector('.products-container').addEventListener('click', function(event) {
+        // Use event delegation to check if the clicked element is an add-to-cart button
+        if (event.target.closest('.add-to-cart')) {
+            const pid = event.target.closest('.add-to-cart').getAttribute('data-pid');
+            console.log(`Adding product with PID: ${pid} to cart`); // Debug log
+            addToCart(pid);
+        }
+    });
+});
+
+
+
+
+function displayCartItems() {
+    const cartTable = document.querySelector('.show-cart');
+    let totalCartAmount = 0;
+    let output = "";
+
+    // Start table structure
+    output += `
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+    `;
+
+    // Iterate over cart items and create table rows
+    cartObj.forEach((cartItem, pid) => {
+        // Access product details through the `product` property of `CartItem`
+        const product = cartItem.product;
+        const subtotal = product.price * cartItem.quantity; // Use `product.price` and `cartItem.quantity`
+        totalCartAmount += subtotal;
+        output += `
+        <tr>
+            <td>${product.product_name}</td> 
+            <td>${product.price.toFixed(2)}</td> 
+            <td>${cartItem.quantity}</td> 
+            <td>${subtotal.toFixed(2)}</td>
+            <td>
+            <button class="btn btn-danger btn-sm removeItem" data-pid="${pid}">Remove</button>
+            </td>
+        </tr>
+        `;
+    });
+
+
+
+    // Close tbody
+    output += `</tbody>`;
+
+    // Set the innerHTML of the cart table to the newly created rows
+    cartTable.innerHTML = output;
+
+    // Update the total cart amount display
+    document.querySelector('.total-cart').textContent = totalCartAmount.toFixed(2);
+
+    document.querySelectorAll('.removeItem').forEach(button => {
+        button.addEventListener('click', removeHandler);
+    });
+}
+function removeHandler(e) {
+    const pid = e.target.getAttribute('data-pid'); // Get the product ID
+    if (cartObj.has(pid)) {
+        cartObj.delete(pid); // Remove the item from the cart
+        displayCartItems(); // Refresh the cart display to show updated cart
+    }
+}
+
+
+
+document.querySelector('.btn-primary').addEventListener('click', () => {
+    cartObj.clear(); // Clear the cart
+    displayCartItems(); // Update the UI
+});
