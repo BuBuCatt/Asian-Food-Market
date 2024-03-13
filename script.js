@@ -184,8 +184,8 @@ function displaySuggestions(filteredSuggestions) {
 function selectSuggestion(suggestion) {
     const searchBar = document.getElementById('searchBar');
     searchBar.value = suggestion;
-    
-   document.getElementById('searchBar').value = "";
+    console.log("suggestion" + suggestion);
+
 
 
     const suggestionsContainer = document.querySelector('.resultBox ');
@@ -206,6 +206,12 @@ document.addEventListener('click', function(event) {
     }
 });
 
+document.querySelector('.resultBox').addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() === 'li') {
+        const suggestion = event.target.textContent;
+        selectSuggestion(suggestion);
+    }
+});
 
 
 // Humburger Menu
