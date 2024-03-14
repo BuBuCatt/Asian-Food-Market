@@ -1,0 +1,74 @@
+[
+    {
+        "pid": "p01" ,
+        "img": "./assets/img/sashimi-hamachi.webp",
+        "product_name": "滨町生鱼片",
+        "price": 41.99,
+        "currency": "CAD",
+        "category":"seafood"
+    },
+    {
+        "pid": "p02" ,
+        "img": "./assets/img/sashimi-aji-loin.webp",
+        "product_name": "志摩味腰肉生鱼片",
+        "price": 59.99,
+        "currency": "CAD",
+        "category":"seafood"
+    },
+    {
+        "pid": "p03" ,
+        "img": "./assets/img/scallops.jpg",
+        "product_name": "北海道扇贝",
+        "price":  39.99,
+        "currency": "CAD",
+        "category":"seafood"
+    },
+    {
+        "pid": "p04" ,
+        "img": "./assets/img/peach.png",
+        "product_name": "福岛桃子",
+        "price": 20.99,
+        "currency": "CAD",
+        "category":"vegetable"
+    },
+    {
+        "pid": "p05" ,
+        "img": "./assets/img/salmon-sashimi.png",
+        "product_name": "鮭魚刺身",
+        "price": 39.99,
+        "currency": "CAD",
+        "category":"seafood"
+    },
+    {
+        "pid": "p06" ,
+        "img": "./assets/img/grapes.png",
+        "product_name": "長野葡萄",
+        "price":  19.99,
+        "currency": "CAD",
+        "category":"vegetable"
+    },
+    {
+        "pid": "p07" ,
+        "img": "./assets/img/taiyaki.png",
+        "product_name": "鯛魚燒",
+        "price": 5.99,
+        "currency": "CAD",
+        "category":"dessert"
+    },
+    {
+        "pid": "p08" ,
+        "img": "./assets/img/uni.png",
+        "product_name": "北海道巴",
+        "price": 120.99,
+        "currency": "CAD",
+        "category":"seafood"
+    },
+    {
+        "pid": "p09" ,
+        "img": "./assets/img/grapes-kyoho.png",
+        "product_name": "大峰葡萄",
+        "price": 19.99,
+        "currency": "CAD",
+        "category":"vegetable"
+    }
+]

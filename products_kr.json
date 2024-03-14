@@ -2,7 +2,7 @@
     {
         "pid": "p01" ,
         "img": "./assets/img/sashimi-hamachi.webp",
-        "product_name": "Hamachi Sashimi",
+        "product_name": "하마치 사시미",
         "price": 41.99,
         "currency": "CAD",
         "category":"seafood"
@@ -10,7 +10,7 @@
     {
         "pid": "p02" ,
         "img": "./assets/img/sashimi-aji-loin.webp",
-        "product_name": " Shima Aji Loin Sashimi",
+        "product_name": "시마 아지 로인 사시미",
         "price": 59.99,
         "currency": "CAD",
         "category":"seafood"
@@ -18,7 +18,7 @@
     {
         "pid": "p03" ,
         "img": "./assets/img/scallops.jpg",
-        "product_name": "Hokkaido Scallops",
+        "product_name": "홋카이도 관자",
         "price":  39.99,
         "currency": "CAD",
         "category":"seafood"
@@ -26,7 +26,7 @@
     {
         "pid": "p04" ,
         "img": "./assets/img/peach.png",
-        "product_name": "Fukushima Peach",
+        "product_name": "후쿠오카 복숭아",
         "price": 20.99,
         "currency": "CAD",
         "category":"vegetable"
@@ -34,7 +34,7 @@
     {
         "pid": "p05" ,
         "img": "./assets/img/salmon-sashimi.png",
-        "product_name": "Salmon Sashimi",
+        "product_name": "연어 사시미",
         "price": 39.99,
         "currency": "CAD",
         "category":"seafood"
@@ -42,7 +42,7 @@
     {
         "pid": "p06" ,
         "img": "./assets/img/grapes.png",
-        "product_name": "nagano grapes",
+        "product_name": "나가노 포도",
         "price":  19.99,
         "currency": "CAD",
         "category":"vegetable"
@@ -50,7 +50,7 @@
     {
         "pid": "p07" ,
         "img": "./assets/img/taiyaki.png",
-        "product_name": "taiyaki",
+        "product_name": "타코야키",
         "price": 5.99,
         "currency": "CAD",
         "category":"dessert"
@@ -58,7 +58,7 @@
     {
         "pid": "p08" ,
         "img": "./assets/img/uni.png",
-        "product_name": "Hokkaido Bafun Uni",
+        "product_name": "홋카이도산 성게알",
         "price": 120.99,
         "currency": "CAD",
         "category":"seafood"
@@ -66,7 +66,7 @@
     {
         "pid": "p09" ,
         "img": "./assets/img/grapes-kyoho.png",
-        "product_name": "Kyoho Grapes",
+        "product_name": "교호 포도",
         "price": 19.99,
         "currency": "CAD",
         "category":"vegetable"

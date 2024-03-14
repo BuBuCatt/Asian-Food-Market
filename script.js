@@ -3,7 +3,7 @@
  */
 
 //import class
-import { Product , CartItem} from "./JS/productClass.js";
+import { Product, CartItem } from "./JS/productClass.js";
 
 // Global products array
 let products = [];
@@ -20,14 +20,21 @@ const cartObj = new Map();
 let http = new XMLHttpRequest();
 // the variable http holds now all methods and properties of object.
 
-
+// changing Languge select function
+let jsonFileName = "products_en.json"; //default
+$("#selectLang").on("change", function () {
+    jsonFileName = "products_" + $("#selectLang").val() + ".json";
+    load();
+    open();
+    
+});
 
 const notification = document.getElementsByClassName('notification-container')[0];
 // Show notification
 const showNotification = () => {
     notification.classList.add('show');
     setTimeout(() => {
-      notification.classList.remove('show');
+        notification.classList.remove('show');
     }, 2000)
 }
 
@@ -51,33 +58,38 @@ const showNotification = () => {
 
 
 */
+function load() {
 
-http.onload = function(){
-    // inside this function need to check the reeady state and status properties.
-    if(this.readyState == 4 && this.status == 200){
+    http.onload = function () {
+        // inside this function need to check the reeady state and status properties.
+        if (this.readyState == 4 && this.status == 200) {
 
-        //if we have a successful response, i have to parse the json data
-        //and convert them to js array
+            //if we have a successful response, i have to parse the json data
+            //and convert them to js array
 
-        let products = JSON.parse(this.responseText);
-        for(let data of products){
-            productObj.set(data.pid , data);
+            let products = JSON.parse(this.responseText);
+            for (let data of products) {
+                productObj.set(data.pid, data);
+            }
+            console.log(products);
+
+            prepareSuggestions();
+
+            displayProducts(productObj);
+
+
+
+
+
+
+
         }
-        console.log(products);
-
-        prepareSuggestions();
-        
-        displayProducts(productObj); 
-
-        
- 
-
-
-
 
     }
 
-}
+};
+
+load();
 
 let suggestions = [];
 // Now that productObj has been populated, generate the suggestions array
@@ -87,22 +99,25 @@ function prepareSuggestions() {
     // Proceed to use suggestions for autofill
 }
 
-//Second, prepare the request with the open() method
-http.open('GET', 'products.json', true);
-//Next, send the request 
+function open() {
+    //Second, prepare the request with the open() method
+    http.open('GET', jsonFileName, true);
+    //Next, send the request 
 
-http.send();
+    http.send();
+}
+open();
 
 // search Bar
 const searchBar = document.getElementById('searchBar');
 searchBar.addEventListener('input', handleSearch);
 
 //filter
-function handleFilter(){
+function handleFilter() {
     let filterCategory = "";
-    $(".filter").click(function(){
+    $(".filter").click(function () {
         filterCategory = $(this).attr("id");
-        displayProducts(productObj ,"", filterCategory);
+        displayProducts(productObj, "", filterCategory);
     });
     return filterCategory;
 }
@@ -117,26 +132,26 @@ function handleSearch(event) {
     // Debugging: log the search term to console
     console.log('Searching for:', searchTerm);
 
-    if(searchTerm == ""){
+    if (searchTerm == "") {
         displaySuggestions([]);
         return;
     }
 
 
-    let filteredSuggestions = suggestions.filter(suggestion => 
-            suggestion.toLowerCase().includes(searchTerm)
-        );
+    let filteredSuggestions = suggestions.filter(suggestion =>
+        suggestion.toLowerCase().includes(searchTerm)
+    );
 
-    
+
     displaySuggestions(filteredSuggestions);
 
 
     // Call this function to display the filtered products
-    displayProducts(productObj ,searchTerm, filterCategory);
+    displayProducts(productObj, searchTerm, filterCategory);
 
-   
-    
-  
+
+
+
 }
 
 // function to display suggestion
@@ -169,10 +184,10 @@ function selectSuggestion(suggestion) {
     const suggestionsContainer = document.querySelector('.resultBox ');
     suggestionsContainer.style.display = 'none';
 
-    handleSearch({ target: { value: suggestion } }); 
+    handleSearch({ target: { value: suggestion } });
 }
 
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
     // Get the search bar and the suggestion bar elements
     const searchBar = document.getElementById('searchBar');
     const suggestionBar = document.querySelector('.resultBox');
@@ -184,7 +199,7 @@ document.addEventListener('click', function(event) {
     }
 });
 
-document.querySelector('.resultBox').addEventListener('click', function(event) {
+document.querySelector('.resultBox').addEventListener('click', function (event) {
     if (event.target.tagName.toLowerCase() === 'li') {
         const suggestion = event.target.textContent;
         selectSuggestion(suggestion);
@@ -195,7 +210,7 @@ document.querySelector('.resultBox').addEventListener('click', function(event) {
 // Humburger Menu
 
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const menuToggle = document.getElementById('nav-toggle');
     const menu = document.querySelector('.nav-list');
     const breakpoint = 768; // Set this to your mobile breakpoint
@@ -227,13 +242,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Using jQuery for toggling the search bar
 
-$(document).ready(function(){
-    $('#toggle-search').click(function(event){
+$(document).ready(function () {
+    $('#toggle-search').click(function (event) {
         // Prevent the default action of the anchor tag
         event.preventDefault();
-        
+
         // Toggle the display of the search bar
-        $('#searchBar').toggle('normal', function(){
+        $('#searchBar').toggle('normal', function () {
             // Focus on the search input if it's visible after toggling
             if ($(this).is(':visible')) {
                 $(this).focus();
@@ -251,38 +266,38 @@ $(document).ready(function(){
 // check the item is already exist or not, if yes updated the quantity 
 // if not add a new item to the cart
 
-function addToCart(pid, quantity = 1){
-        // Check if the product exists in the product catalog
-        if (!productObj.has(pid)) {
-            console.error("Product not found with PID:", pid);
-            return; // Stop execution if the product does not exist
-        }
+function addToCart(pid, quantity = 1) {
+    // Check if the product exists in the product catalog
+    if (!productObj.has(pid)) {
+        console.error("Product not found with PID:", pid);
+        return; // Stop execution if the product does not exist
+    }
 
-        const product = productObj.get(pid);
-        let cartItem = cartObj.get(pid);
+    const product = productObj.get(pid);
+    let cartItem = cartObj.get(pid);
 
-         // If the product is already in the cart, update the quantity
-        if (cartItem) {
-            cartItem.quantity++;
-            $("#alert").text("Item already in cart, updating count");
-            showNotification();
-            // alert("Item already in cart, updating count");
-            console.log("Item already in cart, updating count:", cartItem);
-        } else {
-            // If the product is not in the cart, add it with the given quantity
-            cartItem = new CartItem(product, quantity);
-            console.log("New item, adding to cart:", cartItem);
-            
-            $("#alert").text("New item, adding to cart");
-            showNotification();
-            // alert("New item, adding to cart");
-        }
+    // If the product is already in the cart, update the quantity
+    if (cartItem) {
+        cartItem.quantity++;
+        $("#alert").text("Item already in cart, updating count");
+        showNotification();
+        // alert("Item already in cart, updating count");
+        console.log("Item already in cart, updating count:", cartItem);
+    } else {
+        // If the product is not in the cart, add it with the given quantity
+        cartItem = new CartItem(product, quantity);
+        console.log("New item, adding to cart:", cartItem);
 
-        
+        $("#alert").text("New item, adding to cart");
+        showNotification();
+        // alert("New item, adding to cart");
+    }
 
-        // Update the cart with the new or updated item
-        cartObj.set(pid, cartItem);
-        displayCartItems(); // Assuming this function properly displays cart items
+
+
+    // Update the cart with the new or updated item
+    cartObj.set(pid, cartItem);
+    displayCartItems(); // Assuming this function properly displays cart items
 
 
 }
@@ -292,7 +307,7 @@ function addToCart(pid, quantity = 1){
 
 document.addEventListener('DOMContentLoaded', () => {
     // Attach the event listener to a parent container
-    document.querySelector('.products-container').addEventListener('click', function(event) {
+    document.querySelector('.products-container').addEventListener('click', function (event) {
         // Use event delegation to check if the clicked element is an add-to-cart button
         if (event.target.closest('.add-to-cart')) {
             const pid = event.target.closest('.add-to-cart').getAttribute('data-pid');
@@ -377,14 +392,14 @@ document.querySelector('.btn-primary').addEventListener('click', () => {
 
 //display products function
 
-function displayProducts(productsToDisplay , searchQuery ="", filter="") {
+function displayProducts(productsToDisplay, searchQuery = "", filter = "") {
 
     document.querySelector('.products-container').innerHTML = "";
-    console.log("This is display:" , searchQuery);
+    console.log("This is display:", searchQuery);
 
     let productsArray = Array.from(productsToDisplay.values()); // mapobj to array
 
-    if(filter != ''){
+    if (filter != '') {
         let productsArrayFiltered = [];
         for (let i = 0; i < productsArray.length; i++) {
             if (productsArray[i].category == filter) {
@@ -396,13 +411,13 @@ function displayProducts(productsToDisplay , searchQuery ="", filter="") {
 
     let output = "";
 
-    for(let item of productsArray) {
+    for (let item of productsArray) {
 
         const matchSearchQuery = item.product_name.toLowerCase().includes(searchQuery);
 
         console.log(matchSearchQuery);
 
-        if(matchSearchQuery){ //true
+        if (matchSearchQuery) { //true
 
             output += `
             <div class="product">
