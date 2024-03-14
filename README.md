@@ -27,6 +27,6 @@ This project has no specific prerequisites other than a modern web browser. It's
 
 ### Installation
 
-1. Clone the repository:
+ Clone the repository:
 ```sh
 git clone https://github.com/your-username/Asian-Food-Market.git
