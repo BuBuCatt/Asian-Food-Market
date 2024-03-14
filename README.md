@@ -2,6 +2,11 @@
 
 Welcome to the repository for the Asian Food Market website! This is a simple and intuitive e-commerce platform designed to bring the authentic flavors of Asia right to your doorstep. Our site offers a user-friendly experience for shopping a variety of Asian food products.
 
+# Collaborators
+![Kristen](https://github.com/BuBuCatt)
+![Hyemin](https://github.com/hyemin-project)
+
+
 ## Features
 
 - Browse through a variety of Asian food categories
