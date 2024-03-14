@@ -20,10 +20,12 @@ const cartObj = new Map();
 let http = new XMLHttpRequest();
 // the variable http holds now all methods and properties of object.
 
-// changing Languge select function
+// changing language select function
 let jsonFileName = "products_en.json"; //default
+let language = "en"; //default
 $("#selectLang").on("change", function () {
     jsonFileName = "products_" + $("#selectLang").val() + ".json";
+    language = $("#selectLang").val();
     load();
     open();
     
@@ -75,13 +77,7 @@ function load() {
 
             prepareSuggestions();
 
-            displayProducts(productObj);
-
-
-
-
-
-
+            displayProducts(productObj,'','',language);
 
         }
 
@@ -117,7 +113,7 @@ function handleFilter() {
     let filterCategory = "";
     $(".filter").click(function () {
         filterCategory = $(this).attr("id");
-        displayProducts(productObj, "", filterCategory);
+        displayProducts(productObj, "", filterCategory, language);
     });
     return filterCategory;
 }
@@ -395,7 +391,7 @@ document.querySelector('.btn-primary').addEventListener('click', () => {
 
 //display products function
 
-function displayProducts(productsToDisplay, searchQuery = "", filter = "") {
+function displayProducts(productsToDisplay, searchQuery = "", filter = "", language="en") {
 
     document.querySelector('.products-container').innerHTML = "";
     console.log("This is display:", searchQuery);
@@ -413,6 +409,14 @@ function displayProducts(productsToDisplay, searchQuery = "", filter = "") {
     }
 
     let output = "";
+    let languageText = "";
+    if( language == "ch"){
+        languageText = "加入購物車";
+    }else if(language == "kr"){
+        languageText = "장바구니 담기";
+    }else{
+        languageText = "Add to Cart";
+    }
 
     for (let item of productsArray) {
 
@@ -431,7 +435,7 @@ function displayProducts(productsToDisplay, searchQuery = "", filter = "") {
                     <span>${item.currency}</span>
                 </p>
                
-                <p onClick="addToCart('${item.pid}')" data-pid="${item.pid}" class="cart add-to-cart">Add to Cart <i class="ri-shopping-cart-line"></i></p>
+                <p onClick="addToCart('${item.pid}')" data-pid="${item.pid}" class="cart add-to-cart">`+languageText+`<i class="ri-shopping-cart-line"></i></p>
             </div>
         `;
 
