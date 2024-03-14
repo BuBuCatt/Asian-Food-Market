@@ -2,7 +2,7 @@
     {
         "pid": "p01" ,
         "img": "./assets/img/sashimi-hamachi.webp",
-        "product_name": "滨町生鱼片",
+        "product_name": "鰤鱼生鱼片",
         "price": 41.99,
         "currency": "CAD",
         "category":"seafood"
@@ -10,7 +10,7 @@
     {
         "pid": "p02" ,
         "img": "./assets/img/sashimi-aji-loin.webp",
-        "product_name": "志摩味腰肉生鱼片",
+        "product_name": "白魽生鱼片",
         "price": 59.99,
         "currency": "CAD",
         "category":"seafood"
@@ -18,7 +18,7 @@
     {
         "pid": "p03" ,
         "img": "./assets/img/scallops.jpg",
-        "product_name": "北海道扇贝",
+        "product_name": "北海道扇貝",
         "price":  39.99,
         "currency": "CAD",
         "category":"seafood"
@@ -34,7 +34,7 @@
     {
         "pid": "p05" ,
         "img": "./assets/img/salmon-sashimi.png",
-        "product_name": "鮭魚刺身",
+        "product_name": "鮭魚生鱼片",
         "price": 39.99,
         "currency": "CAD",
         "category":"seafood"
@@ -58,7 +58,7 @@
     {
         "pid": "p08" ,
         "img": "./assets/img/uni.png",
-        "product_name": "北海道巴",
+        "product_name": "北海道海膽",
         "price": 120.99,
         "currency": "CAD",
         "category":"seafood"
@@ -115,7 +115,7 @@
     {
         "pid": "p15" ,
         "img": "./assets/img/dessert-1.jpg",
-        "product_name": "火鍋",
+        "product_name": "糖餅",
         "price": 10.99,
         "currency": "CAD",
         "category":"dessert"
