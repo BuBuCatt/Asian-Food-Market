@@ -70,5 +70,62 @@
         "price": 19.99,
         "currency": "CAD",
         "category":"vegetable"
+    },
+    {
+        "pid": "p10" ,
+        "img": "./assets/img/vege-1.jpg",
+        "product_name": "涼瓜",
+        "price": 9.99,
+        "currency": "CAD",
+        "category":"vegetable"
+    }
+    ,
+    {
+        "pid": "p11" ,
+        "img": "./assets/img/vege-2.jpg",
+        "product_name": "南瓜",
+        "price": 13.99,
+        "currency": "CAD",
+        "category":"vegetable"
+    },
+    {
+        "pid": "p12" ,
+        "img": "./assets/img/vege-3.jpg",
+        "product_name": "沙葛",
+        "price": 6.99,
+        "currency": "CAD",
+        "category":"vegetable"
+    },
+    {
+        "pid": "p13" ,
+        "img": "./assets/img/vege-4.jpg",
+        "product_name": "蓮藕",
+        "price": 3.99,
+        "currency": "CAD",
+        "category":"vegetable"
+    },
+    {
+        "pid": "p14" ,
+        "img": "./assets/img/vege-5.jpg",
+        "product_name": "大根",
+        "price": 4.99,
+        "currency": "CAD",
+        "category":"vegetable"
+    },
+    {
+        "pid": "p15" ,
+        "img": "./assets/img/dessert-1.jpg",
+        "product_name": "火鍋",
+        "price": 10.99,
+        "currency": "CAD",
+        "category":"dessert"
+    },
+    {
+        "pid": "p16" ,
+        "img": "./assets/img/dessert-2.jpg",
+        "product_name": "綠茶年糕",
+        "price": 14.99,
+        "currency": "CAD",
+        "category":"dessert"
     }
 ]
