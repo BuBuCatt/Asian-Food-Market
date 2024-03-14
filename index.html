@@ -62,7 +62,13 @@
             
             <ul class="nav-list">
                 <li class="nav-item home"><a href="/">Home</a></li>
-                <li class="nav-item"><a href="#menu">Our Menu</a></li>
+                <li class="nav-item dropdown"><a href="#menu">Our Menu</a>
+                    <div class="dropdown-content">
+                        <a href="#">Seafood</a>
+                        <a href="#">Vegetable</a>
+                        <a href="#">Dessert</a>
+                    </div>
+                </li>
                 <!-- <li class="nav-item"><a href="#delivery">Delivery / Calendar</a></li> -->
                 <li class="nav-item"><a href="#about">About Us</a></li>
             </ul>
@@ -80,14 +86,17 @@
         
         
            
-            <a href="#account"><img src="./assets/icons/icons8-account-30.png" alt="Account"></a>
+            <!-- <a href="#account"><img src="./assets/icons/icons8-account-30.png" alt="Account"></a> -->
             <!-- <a href="./pages/cart.html"><img src="./assets/icons/icons8-shopping-bag-30.png" alt="Cart"></a> -->
-            <a href="./pages/cart.html" class="btn btn-warning btn-cart" data-bs-toggle="modal" data-bs-target="#cart">
+            <a href="./pages/cart.html" class="btn btn-cart" data-bs-toggle="modal" data-bs-target="#cart">
                 <img src="./assets/icons/icons8-shopping-bag-30.png" alt="Cart">
             </a>
-            
-
+            <label class="switch">
+                <input id="switch" type="checkbox">
+                <span class="slider"></span>
+            </label>
         </div>
+        
 
  
     </header>
@@ -166,5 +175,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     
 <script src="./script.js"></script>
+<script src="./load.js"></script>
 </body>
 </html>

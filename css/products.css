@@ -12,12 +12,21 @@
     --underline-color:rgb(50, 50, 50);
     --product-text-color:rgba(43, 43, 43, 0.8);
     --button-border-color:rgba(102, 102, 102, 0.4); 
+    --container-bg-color:white;
+    --container-box-shadow: 0 5px 5px rgba(0,0,0,0.3);
 }
 
+:root[theme="dark-mode"]{
+    --product-text-color:rgba(225, 225, 225, 1);
+    --container-bg-color:rgb(57, 55, 55, 0.7);
+    --container-box-shadow: 0 5px 5px rgba(225,225,225,0.3);
+
+}
 
 body{
     font-family: "Poppins",sans-serif;
     min-height: 100vh;
+    background-color: var(--bg-color);
 }
 
 /* products css using grid */
@@ -38,8 +47,9 @@ body{
 
 .product{
     padding: 10px;
-    box-shadow: 0 5px 5px rgba(0,0,0,0.3);
+    box-shadow: var(--container-box-shadow);
     color: var(--product-text-color);
+    background-color: var(--container-bg-color);
    
 }
 

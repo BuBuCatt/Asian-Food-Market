@@ -13,8 +13,71 @@
     --nav-text-color: rgba(85, 85, 85, 0.8); 
     --underline-color:rgb(50, 50, 50);
     --search-text-color:#ffffff;
+    --bg-color:#ffffff;
+    --nav-bg-color: rgba(255, 255, 255, 0.9);
+    --icon-color-reverse:brightness(1) invert(0);
+    --dropdown-bg-color:#f9f9f9;
+    --dropdown-bg-color-hover:#ececec;
+}
+
+:root[theme="dark-mode"]{
+    --nav-text-color: rgba(225, 225, 225, 0.8); 
+    --underline-color:rgb(225, 225, 225);
+    --search-text-color:#ffffff;
+    --bg-color:rgba(20, 20, 20, 1);
+    --nav-bg-color:  rgba(18, 18, 18, 0.8);
+    --icon-color-reverse:brightness(0) invert(1);
+    --dropdown-bg-color:rgba(54, 48, 48, 0.8);
+    --dropdown-bg-color-hover: rgba(225, 225, 225, 0.5);
 }
  
+
+/* ==================darkmode slider======================= */
+
+.switch {
+    position: relative;
+    width: 48px;
+    height: 22px;
+    margin-right: 2rem;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    cursor: pointer;
+    background-color: rgba(120, 85, 85, 0.8); 
+    border-radius: 34px;
+    transition: 0.4s;
+}
+
+/* ! */
+.slider::before {
+    position: absolute;
+    content: "";
+    height: 15px;
+    width: 15px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.5s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: rgb(50, 50, 50);
+}
+
+input:checked+.slider::before {
+    /* ! */
+    transform: translateX(26px);
+}
 
 /* header */
 .header-container{
@@ -39,6 +102,7 @@
 
 .logo img{
     width: 100%;
+    filter: var(--icon-color-reverse);
 }
 
 .logo, .navigation, .icons {
@@ -114,7 +178,7 @@ nav .nav-list {
 
 }
 
-.icons a{
+.icons *{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -122,9 +186,11 @@ nav .nav-list {
     min-width: 30px; 
    
  }
+
  
  .icons img{
     width: 90%;
+    filter: var(--icon-color-reverse);
  }
 
  .icons a:hover{
@@ -133,7 +199,6 @@ nav .nav-list {
  
 
 .btn-cart{
-    background-color: white;
     border: none;
 }
 #searchBar {
@@ -223,7 +288,7 @@ nav .nav-list {
         display: none ;
         position: absolute;
         top: 90px;
-        background-color:white;
+        background-color: var(--nav-bg-color);
         left: 0;
         flex-direction: column;
         width: 100%;
@@ -280,11 +345,38 @@ nav .nav-list {
         margin-top: 50px;
     }
 
-
-
-
 }
 
 
+.dropdown{
+    position : relative;
+    display : inline-block;
+  }
+  
+  .dropdown-content{
+    display : none;
+    position : absolute;
+    z-index : 1; /*다른 요소들보다 앞에 배치*/
+    font-weight: 400;
+    background-color: var(--dropdown-bg-color); 
+    
+    min-width : 100px;
+  }
+  
+  .dropdown-content a{
+    display : block;
+    text-decoration : none;
+    color : var(--nav-text-color);
+    font-size: 12px;
+    padding : 12px 20px;
+  }
+  
+  .dropdown-content a:hover{
+    background-color : var(--dropdown-bg-color-hover);
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
 
 
