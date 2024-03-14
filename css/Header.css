@@ -8,6 +8,10 @@
     margin: 0;
 }
 
+body{
+    height: 100%;
+}
+
 /* define color using css variables */
 :root{
     --nav-text-color: rgba(85, 85, 85, 0.8); 
@@ -380,3 +384,21 @@ nav .nav-list {
   }
 
 
+  .notification-container {
+    transition: transform 0.3s ease-in-out;
+    display: none;
+    animation: fadeout 3s;
+  }
+  
+  .notification-container.show {
+    display: block;
+  }
+
+    @keyframes fadeout {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }

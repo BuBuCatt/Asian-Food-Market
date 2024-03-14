@@ -22,6 +22,14 @@ let http = new XMLHttpRequest();
 
 
 
+const notification = document.getElementsByClassName('notification-container')[0];
+// Show notification
+const showNotification = () => {
+    notification.classList.add('show');
+    setTimeout(() => {
+      notification.classList.remove('show');
+    }, 2000)
+}
 
 // the first argument sets the http method
 // in the second argument we pass the file where our data lives
@@ -89,50 +97,20 @@ http.send();
 const searchBar = document.getElementById('searchBar');
 searchBar.addEventListener('input', handleSearch);
 
-
-//display products function
-
-function displayProducts(productsToDisplay , searchQuery ="") {
-
-    document.querySelector('.products-container').innerHTML = "";
-    console.log("This is display:" , searchQuery);
-
-    let productsArray = Array.from(productsToDisplay.values()); // mapobj to array
-
-    let output = "";
-
-    for(let item of productsArray) {
-
-        const matchSearchQuery = item.product_name.toLowerCase().includes(searchQuery);
-
-        console.log(matchSearchQuery);
-
-        if(matchSearchQuery){ //true
-
-            output += `
-            <div class="product">
-                <img src="${item.img}" alt="${item.product_name}">
-                <p class="title">${item.product_name}</p>
-                <p class="price">
-                    <span>$${item.price}</span>
-                    <span>${item.currency}</span>
-                </p>
-               
-                <p onclick="addToCart('${item.pid}')" data-pid="${item.pid}" class="cart add-to-cart">Add to Cart <i class="ri-shopping-cart-line"></i></p>
-            </div>
-        `;
-
-        }
-
-
-
-    }
-    document.querySelector('.products-container').innerHTML = output;
+//filter
+function handleFilter(){
+    let filterCategory = "";
+    $(".filter").click(function(){
+        filterCategory = $(this).attr("id");
+        displayProducts(productObj ,"", filterCategory);
+    });
+    return filterCategory;
 }
 
-
-
+let filterCategory = handleFilter();
+handleFilter();
 // Function to handle the search and display suggestions
+
 function handleSearch(event) {
     const searchTerm = event.target.value.toLowerCase();
 
@@ -154,7 +132,7 @@ function handleSearch(event) {
 
 
     // Call this function to display the filtered products
-    displayProducts(productObj ,searchTerm);
+    displayProducts(productObj ,searchTerm, filterCategory);
 
    
     
@@ -286,11 +264,18 @@ function addToCart(pid, quantity = 1){
          // If the product is already in the cart, update the quantity
         if (cartItem) {
             cartItem.quantity++;
+            $("#alert").text("Item already in cart, updating count");
+            showNotification();
+            // alert("Item already in cart, updating count");
             console.log("Item already in cart, updating count:", cartItem);
         } else {
             // If the product is not in the cart, add it with the given quantity
             cartItem = new CartItem(product, quantity);
             console.log("New item, adding to cart:", cartItem);
+            
+            $("#alert").text("New item, adding to cart");
+            showNotification();
+            // alert("New item, adding to cart");
         }
 
         
@@ -387,3 +372,57 @@ document.querySelector('.btn-primary').addEventListener('click', () => {
     cartObj.clear(); // Clear the cart
     displayCartItems(); // Update the UI
 });
+
+
+
+//display products function
+
+function displayProducts(productsToDisplay , searchQuery ="", filter="") {
+
+    document.querySelector('.products-container').innerHTML = "";
+    console.log("This is display:" , searchQuery);
+
+    let productsArray = Array.from(productsToDisplay.values()); // mapobj to array
+
+    if(filter != ''){
+        let productsArrayFiltered = [];
+        for (let i = 0; i < productsArray.length; i++) {
+            if (productsArray[i].category == filter) {
+                productsArrayFiltered = [...productsArrayFiltered, productsArray[i]];
+            }
+        }
+        productsArray = productsArrayFiltered;
+    }
+
+    let output = "";
+
+    for(let item of productsArray) {
+
+        const matchSearchQuery = item.product_name.toLowerCase().includes(searchQuery);
+
+        console.log(matchSearchQuery);
+
+        if(matchSearchQuery){ //true
+
+            output += `
+            <div class="product">
+                <img src="${item.img}" alt="${item.product_name}">
+                <p class="title">${item.product_name}</p>
+                <p class="price">
+                    <span>$${item.price}</span>
+                    <span>${item.currency}</span>
+                </p>
+               
+                <p onClick="addToCart('${item.pid}')" data-pid="${item.pid}" class="cart add-to-cart">Add to Cart <i class="ri-shopping-cart-line"></i></p>
+            </div>
+        `;
+
+        }
+
+
+
+    }
+    document.querySelector('.products-container').innerHTML = output;
+}
+
+
