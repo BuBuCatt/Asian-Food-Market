@@ -169,7 +169,10 @@ function displaySuggestions(filteredSuggestions) {
         suggestionsContainer.style.display = 'block';
 
     } else {
-        suggestionsContainer.style.display = 'none';
+        
+        suggestionsContainer.innerHTML = `<div class='not-found'>Sorry, we can't find the product.</div>`;
+        suggestionsContainer.style.display = 'block';
+        
     }
 }
 

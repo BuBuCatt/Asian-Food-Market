@@ -108,3 +108,8 @@ body{
     padding-left: 10px;
 }
 
+.not-found {
+    padding: 10px;
+    text-align: center;
+    color: #666;
+}
