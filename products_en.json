@@ -111,5 +111,21 @@
         "price": 4.99,
         "currency": "CAD",
         "category":"vegetable"
+    },
+    {
+        "pid": "p15" ,
+        "img": "./assets/img/dessert-1.jpg",
+        "product_name": "Hodduk",
+        "price": 10.99,
+        "currency": "CAD",
+        "category":"dessert"
+    },
+    {
+        "pid": "p16" ,
+        "img": "./assets/img/dessert-2.jpg",
+        "product_name": "Matcha Mochi",
+        "price": 14.99,
+        "currency": "CAD",
+        "category":"dessert"
     }
 ]
