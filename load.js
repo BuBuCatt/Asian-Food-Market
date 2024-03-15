@@ -2,7 +2,7 @@
 
 const button = document.querySelector('#switch');
 const container = document.documentElement;
-const userTheme = localStorage.getItem('theme');
+const userTheme = sessionStorage.getItem('theme');
 
 // loading page
 document.addEventListener('DOMContentLoaded', () => {
@@ -24,12 +24,12 @@ button.addEventListener('change', (e) => {
 
 // dark mode / light mode change event
 function clickDarkMode() {
-    localStorage.setItem("theme", "dark-mode");
+    sessionStorage.setItem("theme", "dark-mode");
     container.setAttribute('theme', 'dark-mode');
     button.checked = true;
 }
 function clickLightMode() {
-    localStorage.setItem("theme", "");
+    sessionStorage.setItem("theme", "");
     container.setAttribute('theme', '');
     button.checked = false;
 }

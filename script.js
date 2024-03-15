@@ -119,7 +119,6 @@ function handleFilter() {
 }
 
 let filterCategory = handleFilter();
-handleFilter();
 // Function to handle the search and display suggestions
 
 function handleSearch(event) {
@@ -152,37 +151,55 @@ function handleSearch(event) {
 
 // function to display suggestion
 
+
+
+// Define the function displaySuggestions with filteredSuggestions as its parameter
 function displaySuggestions(filteredSuggestions) {
+    // Selects the HTML element with the class 'resultBox' to use as the container for displaying suggestions
     const suggestionsContainer = document.querySelector('.resultBox');
-    suggestionsContainer.innerHTML = ''; // Clear previous suggestions
+    // Clears the inner HTML of the suggestions container to remove any previous suggestions
+    suggestionsContainer.innerHTML = ''; 
 
+    // Checks if there are any filtered suggestions to display
     if (filteredSuggestions.length > 0) {
+        // Maps over the filteredSuggestions array, converting each suggestion into an HTML list item string
+        // with an onclick attribute that calls selectSuggestion function with the suggestion as its argument
         const suggestionsHtml = filteredSuggestions.map(suggestion =>
-            `<li onclick="selectSuggestion('${suggestion}')">${suggestion}</li>`
-        ).join('');
+            `<li onclick="selectSuggestion('${suggestion.replace("'", "\\'")}')">${suggestion}</li>`
+        ).join(''); // Joins the array of HTML strings into a single string
 
+        // Sets the inner HTML of the suggestions container to an unordered list containing the suggestionsHtml
         suggestionsContainer.innerHTML = `<ul>${suggestionsHtml}</ul>`;
+        // Sets the display style of the suggestions container to 'block', making it visible
         suggestionsContainer.style.display = 'block';
 
     } else {
-        
+        // If there are no filtered suggestions, sets the inner HTML of the container to a div with a message
         suggestionsContainer.innerHTML = `<div class='not-found'>Sorry, we can't find the product.</div>`;
+        // Ensures the suggestions container is visible, even if it's just to show the 'not found' message
         suggestionsContainer.style.display = 'block';
         
     }
 }
 
 
+// Define the function selectSuggestion with suggestion as its parameter
 function selectSuggestion(suggestion) {
+    // Select the HTML element with the id 'searchBar' 
     const searchBar = document.getElementById('searchBar');
+    // Set the value of the searchBar to the suggestion that was clicked on
     searchBar.value = suggestion;
+    // Log the selected suggestion to the console for debugging or informational purposes
     console.log("suggestion" + suggestion);
 
-
-
+    // Select the HTML element with the class 'resultBox' 
     const suggestionsContainer = document.querySelector('.resultBox ');
+    // Set the display style of the suggestions container to 'none', hiding it from view
     suggestionsContainer.style.display = 'none';
 
+    // Call the handleSearch function, simulating a search event with the selected suggestion
+    // The object passed mimics the structure of a real event object, with 'target' containing
+    // the input element (or its equivalent) and 'value' holding the suggestion text
     handleSearch({ target: { value: suggestion } });
 }
 
@@ -391,13 +408,18 @@ document.querySelector('.btn-primary').addEventListener('click', () => {
 
 //display products function
 
+// Defines the function with parameters for the products to display, optional search query, filter, and language with default values.
 function displayProducts(productsToDisplay, searchQuery = "", filter = "", language="en") {
-
+    // Clears the inner HTML of the container where products are displayed, preparing for new content.
     document.querySelector('.products-container').innerHTML = "";
+
+    // Logs the search query to the console for debugging or informational purposes.
     console.log("This is display:", searchQuery);
 
-    let productsArray = Array.from(productsToDisplay.values()); // mapobj to array
+    // Converts the productsToDisplay, which is expected to be a Map object, into an array for easier manipulation.
+    let productsArray = Array.from(productsToDisplay.values());
 
+    // If a filter is applied, create a new array of products that match the specified filter category.
     if (filter != '') {
         let productsArrayFiltered = [];
         for (let i = 0; i < productsArray.length; i++) {
@@ -408,24 +430,28 @@ function displayProducts(productsToDisplay, searchQuery = "", filter = "", langu
         productsArray = productsArrayFiltered;
     }
 
+    // Initialize a variable to construct the HTML output for displaying products.
     let output = "";
+    // Initialize a variable for the "Add to Cart" button text that will change based on the specified language.
     let languageText = "";
+    // Assigns the "Add to Cart" text in different languages based on the language parameter.
     if( language == "ch"){
-        languageText = "加入購物車";
+        languageText = "加入購物車"; // Chinese
     }else if(language == "kr"){
-        languageText = "장바구니 담기";
+        languageText = "장바구니 담기"; // Korean
     }else{
-        languageText = "Add to Cart";
+        languageText = "Add to Cart"; // Default to English
     }
 
+    // Iterate over the products array to construct the HTML for each product that matches the search query.
     for (let item of productsArray) {
-
-        const matchSearchQuery = item.product_name.toLowerCase().includes(searchQuery);
-
+        // Check if the product name includes the search query (case-insensitive).
+        const matchSearchQuery = item.product_name.toLowerCase().includes(searchQuery.toLowerCase());
+        // Log whether each product matches the search query.
         console.log(matchSearchQuery);
 
+        // If the product matches the search query, append its HTML to the output string.
         if (matchSearchQuery) { //true
-
             output += `
             <div class="product">
                 <img src="${item.img}" alt="${item.product_name}">
@@ -434,17 +460,11 @@ function displayProducts(productsToDisplay, searchQuery = "", filter = "", langu
                     <span>$${item.price}</span>
                     <span>${item.currency}</span>
                 </p>
-               
-                <p onClick="addToCart('${item.pid}')" data-pid="${item.pid}" class="cart add-to-cart">`+languageText+`<i class="ri-shopping-cart-line"></i></p>
+                <p onClick="addToCart('${item.pid}')" data-pid="${item.pid}" class="cart add-to-cart">${languageText}<i class="ri-shopping-cart-line"></i></p>
             </div>
-        `;
-
+            `;
         }
-
-
-
     }
+    // Update the inner HTML of the products container with the constructed output, displaying the products.
     document.querySelector('.products-container').innerHTML = output;
 }
-
-
